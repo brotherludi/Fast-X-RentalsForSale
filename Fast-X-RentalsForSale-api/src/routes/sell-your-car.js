@@ -2,25 +2,25 @@ const router = require("express").Router();
 const db = require("../db");
 const upload = require("../multer-config");
 const carimages = {
-  Toyota: {
-    Camry:
+  "Toyota": {
+    "Camry":
       "https://www.autotrader.com/wp-content/uploads/2022/02/2021-toyota-camry-trd.jpg?w=1024",
-    Corolla:
+    "Corolla":
       "https://d39q3bqe976bgd.cloudfront.net/wp-content/uploads/2018/10/11190520/toyota-2019-corolla-exterior-blue-crush-metallic-l.jpg",
   },
-  BMW: {
-    X1: "https://images.hgmsites.net/hug/2023-bmw-ix1_100843318_h.jpg",
+  'BMW': {
+    'X1': "https://images.hgmsites.net/hug/2023-bmw-ix1_100843318_h.jpg",
   },
-  Honda: {
-    Civic:
+  "Honda": {
+    "Civic":
       "https://uploads.builtforbackroads.com/uploads/2022/02/2022.02.07-HONDA-CIVIC-2019_1.jpg",
   },
-  Ford: {
-    Fusion:
+  "Ford": {
+    "Fusion":
       "https://storage.googleapis.com/wackk-images-production-4f204ab/tamt9q2j59vs319sckif2yxgi4ra",
   },
-  Chevrolet: {
-    Malibu:
+  "Chevrolet": {
+    "Malibu":
       "https://www.autotrader.com/wp-content/uploads/2022/03/2019-chevrolet-malibu-lt.jpg",
   },
 };
@@ -39,8 +39,11 @@ router.post("/", upload.single("images"), async (req, res) => {
       images,
       car_luxury,
     } = req.body;
+console.log(carimages, car_make, car_model);
+console.log(carimages["BMW"])
+    // const imageFilename = carimages[car_make][car_model];
+    const imageFilename = carimages["BMW"]["X1"];
 
-    const imageFilename = carimages[car_make][car_model];
 
     // Check if required fields are provided
     if (!car_make || !car_model || !price || !color || !year) {
